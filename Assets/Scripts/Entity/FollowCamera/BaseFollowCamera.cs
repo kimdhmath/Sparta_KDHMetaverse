@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class BaseFollowCamera : MonoBehaviour
 {
-    //FollowCamera
+    [SerializeField]protected Transform target;
 }
