@@ -10,7 +10,7 @@ public class FPAnimationHandler : BaseAnimationHandler
 
     protected override void Awake()
     {
-        _animator = GetComponent<Animator>();
+        base.Awake();
     }
 
     public void Dead()

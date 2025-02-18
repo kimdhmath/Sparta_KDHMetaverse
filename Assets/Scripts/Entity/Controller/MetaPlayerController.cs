@@ -5,9 +5,12 @@ using UnityEngine.InputSystem;
 
 public class MetaPlayerController : MonoBehaviour
 {
-    private Rigidbody2D _rigidbody;
-
+    [SerializeField] private float speed = 5f;
     [SerializeField] private SpriteRenderer characterRenderer;
+
+    private Rigidbody2D _rigidbody;
+    private MetaAnimationHandler metaAnimationHandler;
+    private Camera mainCamera;
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
@@ -15,14 +18,12 @@ public class MetaPlayerController : MonoBehaviour
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LookDirection { get { return lookDirection; } }
 
-    private Camera mainCamera;
-
-    [SerializeField] private float speed = 5f;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        mainCamera = Camera.main; // Initialize mainCamera
+        metaAnimationHandler = GetComponent<MetaAnimationHandler>();
+        mainCamera = Camera.main;
     }
 
     private void Update()
@@ -40,6 +41,7 @@ public class MetaPlayerController : MonoBehaviour
         direction = direction * speed;
 
         _rigidbody.velocity = direction;
+        metaAnimationHandler.Move(direction);
     }
 
     private void Rotate(Vector2 direction)
@@ -54,22 +56,8 @@ public class MetaPlayerController : MonoBehaviour
     {
         movementDirection = inputValue.Get<Vector2>();
         movementDirection = movementDirection.normalized;
-    }
 
-    void OnLook(InputValue inputValue)
-    {
-        Vector2 mousePosition = inputValue.Get<Vector2>();
-        Vector2 worldPos = mainCamera.ScreenToWorldPoint(mousePosition);
-        lookDirection = (worldPos - (Vector2)transform.position);
-
-        if (lookDirection.magnitude < 0.9f)
-        {
-            lookDirection = Vector2.zero;
-        }
-        else
-        {
-            lookDirection = lookDirection.normalized;
-        }
-
+        lookDirection = inputValue.Get<Vector2>();
+        lookDirection = lookDirection.normalized;
     }
 }

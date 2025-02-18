@@ -9,6 +9,6 @@ public class BaseAnimationHandler : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 }

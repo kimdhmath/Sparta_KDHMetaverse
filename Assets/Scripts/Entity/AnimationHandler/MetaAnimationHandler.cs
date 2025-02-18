@@ -6,15 +6,13 @@ public class MetaAnimationHandler : BaseAnimationHandler
 {
     private static readonly int IsMoving = Animator.StringToHash("IsMove");
 
-    protected Animator animator;
-
     protected override void Awake()
     {
-        _animator = GetComponent<Animator>();
+        base.Awake();
     }
 
     public void Move(Vector2 obj)
     {
-        animator.SetBool(IsMoving, obj.magnitude > 0.5f);
+        _animator.SetBool(IsMoving, obj.magnitude > 0.5f);
     }
 }
