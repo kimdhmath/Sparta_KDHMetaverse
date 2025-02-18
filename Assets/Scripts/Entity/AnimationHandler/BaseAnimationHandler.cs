@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class BaseAnimationHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //局聪皋捞记 包访 贸府
 }
