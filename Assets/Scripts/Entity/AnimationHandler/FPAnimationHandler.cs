@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FPAnimationHandler : MonoBehaviour
+public class FPAnimationHandler : BaseAnimationHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    private static readonly int IsDead = Animator.StringToHash("IsDead");
+
+    protected Animator animator;
+
+    protected override void Awake()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Dead()
     {
-        
+        _animator.SetBool(IsDead,true);
     }
 }

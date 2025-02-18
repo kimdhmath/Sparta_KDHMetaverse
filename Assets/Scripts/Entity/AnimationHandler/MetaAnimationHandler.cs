@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MetaAnimationHandler : MonoBehaviour
+public class MetaAnimationHandler : BaseAnimationHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    private static readonly int IsMoving = Animator.StringToHash("IsMove");
+
+    protected Animator animator;
+
+    protected override void Awake()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Move(Vector2 obj)
     {
-        
+        animator.SetBool(IsMoving, obj.magnitude > 0.5f);
     }
 }

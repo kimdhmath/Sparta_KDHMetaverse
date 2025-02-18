@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class BaseAnimationHandler : MonoBehaviour
 {
-    //局聪皋捞记 包访 贸府
+    //AnimationHandler
+    protected Animator _animator;
+
+    protected virtual void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 }
