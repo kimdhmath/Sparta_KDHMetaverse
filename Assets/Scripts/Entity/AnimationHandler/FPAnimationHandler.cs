@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FPAnimationHandler : BaseAnimationHandler
 {
-    private static readonly int IsDead = Animator.StringToHash("IsDead");
+    private static readonly int IsDie = Animator.StringToHash("IsDie");
 
     protected Animator animator;
 
@@ -15,6 +15,6 @@ public class FPAnimationHandler : BaseAnimationHandler
 
     public void Dead()
     {
-        _animator.SetBool(IsDead,true);
+        _animator.SetBool(IsDie,true);
     }
 }
