@@ -51,7 +51,8 @@ public class FPPlaneController : MonoBehaviour
         _rigidbody.velocity = velocity;
 
         float angle = Mathf.Clamp((_rigidbody.velocity.y * 10f), -90, 90);
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        float lerpAngle = Mathf.LerpAngle(transform.rotation.eulerAngles.z, angle, Time.fixedDeltaTime * 5f);
+        transform.rotation = Quaternion.Euler(0, 0, lerpAngle);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
