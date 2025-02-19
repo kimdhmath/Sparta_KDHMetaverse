@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MetaUI : MonoBehaviour
+public class MetaGameUI : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

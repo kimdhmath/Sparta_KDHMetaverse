@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class FPManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static int score = 0;
+    public static bool isGameOver = false;
+    public static bool isGameStart = false;
+
+    public void Start()
     {
-        
+        isGameStart = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

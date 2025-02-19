@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FPBackGroundLooper : MonoBehaviour
 {
-    private int numBgCount = 5;
+    private readonly int NUMBGCOUNT = 5;
 
     private int obstacleCount = 0;
     private Vector3 obstacleLastPosition = Vector3.zero;
@@ -28,7 +28,7 @@ public class FPBackGroundLooper : MonoBehaviour
             float widthOfBgObject = ((BoxCollider2D)collision).size.x;
             Vector3 pos = collision.transform.position;
 
-            pos.x += widthOfBgObject * numBgCount;
+            pos.x += widthOfBgObject * NUMBGCOUNT;
             collision.transform.position = pos;
             return;
         }

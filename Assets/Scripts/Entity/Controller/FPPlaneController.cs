@@ -12,6 +12,7 @@ public class FPPlaneController : MonoBehaviour
 
     [SerializeField] private float flapForce = 6f;
     [SerializeField] private float forwardSpeed = 3f;
+    [SerializeField]private float deathCooldown;
     private bool isDead = false;
     private bool isFlap = false;
 
@@ -21,6 +22,9 @@ public class FPPlaneController : MonoBehaviour
     {
         _rigidbody = transform.GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<FPAnimationHandler>();
+        GameManager.Instance.FPUISet();
+
+        Time.timeScale = 0;
     }
 
     private void Update()
@@ -31,6 +35,14 @@ public class FPPlaneController : MonoBehaviour
     {
         if (isDead)
         {
+            if(deathCooldown > 0)
+            {
+                deathCooldown -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                GameManager.Instance.FPGameOver();
+            }
             return;
         }
 
@@ -64,6 +76,7 @@ public class FPPlaneController : MonoBehaviour
 
         animationHandler.Dead();
         isDead = true;
+        deathCooldown = 1f;
     }
 
     void OnFlap(InputValue inputValue)

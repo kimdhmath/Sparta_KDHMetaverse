@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseUI : MonoBehaviour
+public abstract class BaseUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    protected BaseUIManager uiManager;
+
+    public virtual void Init(BaseUIManager uiManager)
     {
-        
+        this.uiManager = uiManager;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected abstract UIState GetUIState();
+
+    public void SetActive(UIState state)
     {
-        
+        this.gameObject.SetActive(GetUIState() == state);
     }
 }
