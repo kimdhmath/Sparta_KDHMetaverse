@@ -788,8 +788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2549121607ee67b448bb773bd9852d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFPFirstStart: 1
   fpUIManager: {fileID: 0}
+  tsUIManager: {fileID: 0}
   uiManager: {fileID: 0}
 --- !u!4 &357089843
 Transform:
@@ -3554,7 +3554,7 @@ GameObject:
   - component: {fileID: 1045772055}
   - component: {fileID: 1045772056}
   m_Layer: 5
-  m_Name: FPMenuUI
+  m_Name: FPHomeUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
