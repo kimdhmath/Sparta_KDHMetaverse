@@ -1,0 +1,45 @@
+{
+    "name": "FPPlayerInputControls",
+    "maps": [
+        {
+            "name": "FPPlane",
+            "id": "0e8e412f-21ed-44d3-9363-1b7890ca1f56",
+            "actions": [
+                {
+                    "name": "Flap",
+                    "type": "Button",
+                    "id": "6319e512-9910-47c6-b735-8747a5b9716d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "018ec485-1595-4ab2-a736-819c387432d0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d2674221-6ef0-4653-9b1c-6ef7fe32f6b8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
