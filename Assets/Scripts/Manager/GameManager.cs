@@ -16,6 +16,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FPUIManager fpUIManager;
     //FPFPFPFPFPFPFPFPFP
 
+    //TSTSTSTSTSTSTSTS
+    private int tsScore = 0;
+    private int tsBestScore = 0;
+    private const string TSBESTSCOREKEY = "TSBestScore";
+    private bool isTSGameStart = false;
+    public static bool isTSFirstStart = true;
+    [SerializeField] private TSUIManager tsUIManager;
+    private TSBlockController blockController;
+    //TSTSTSTSTSTSTSTS
+
     [SerializeField]private BaseUIManager uiManager;
 
     public static GameManager Instance { get { return gameManager; } }
@@ -31,6 +41,12 @@ public class GameManager : MonoBehaviour
         if(fpUIManager != null)
         {
             fpUIManager.TextBestScore(fpBestScore);
+        }
+
+        tsBestScore = PlayerPrefs.GetInt(TSBESTSCOREKEY, 0);
+        if (tsUIManager != null)
+        {
+            tsUIManager.TextBestScore(tsBestScore);
         }
     }
 
@@ -92,4 +108,53 @@ public class GameManager : MonoBehaviour
         }
     }
     //FPFPFPFPFPFPFPFPFPFPFPFP
+
+    //TSTSTSTSTSTSTSTS
+    public void TSUISet()
+    {
+        tsUIManager = FindObjectOfType<TSUIManager>();
+        blockController = FindObjectOfType<TSBlockController>();
+    }
+
+    public void TSStartGame()
+    {
+        tsScore = 0;
+        tsUIManager.SetPlayGame();
+        Time.timeScale = 1;
+    }
+
+    public void TSAddScore()
+    {
+        tsScore++;
+        tsUIManager.UpdateScore(tsScore);
+    }
+
+    public int GetTSScore()
+    {
+        return tsScore;
+    }
+
+    public void TSGameOver()
+    {
+        TSUpdateBestScore();
+        tsUIManager.SetGameOver();
+    }
+
+    void TSUpdateBestScore()
+    {
+        if (tsBestScore < tsScore)
+        {
+            Debug.Log("최고 점수 갱신");
+            tsBestScore = tsScore;
+
+            PlayerPrefs.SetInt(TSBESTSCOREKEY, tsBestScore);
+        }
+
+        if (tsUIManager != null)
+        {
+            tsUIManager.TextBestScore(tsBestScore);
+            tsUIManager.TextScore(tsScore);
+        }
+    }
+    //TSTSTSTSTSTSTSTS
 }

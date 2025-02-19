@@ -11,7 +11,7 @@ public class TSBlockController : MonoBehaviour
     private const float BlockMovingSpeed = 3.5f;
     private const float ErrorMargin = 0.1f;
 
-    public GameObject originBlock = null;
+    [SerializeField]private GameObject originBlock = null;
 
     private Vector3 prevBlockPosition;
     private Vector3 desiredPosition;
@@ -23,9 +23,17 @@ public class TSBlockController : MonoBehaviour
 
     int stackCount = -1;
 
+    public Color prevColor;
+    public Color nextColor;
+
     bool isMovingX = true;
 
     private bool isGameOver = true;
+
+    /*private void Awake()
+    {
+        GameManager.Instance.TSUISet();
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +43,30 @@ public class TSBlockController : MonoBehaviour
             Debug.LogError("Originblock is null");
             return;
         }
+
+        isGameOver = false;
+
+        prevColor = GetRandomColor();
+        nextColor = GetRandomColor();
+
+        prevBlockPosition = Vector3.down;
+
+        Spawn_Block();
+        Spawn_Block();
+    }
+
+    public void TSStartGame()
+    {
+        if (originBlock == null)
+        {
+            Debug.LogError("Originblock is null");
+            return;
+        }
+
+        isGameOver = false;
+
+        prevColor = GetRandomColor();
+        nextColor = GetRandomColor();
 
         prevBlockPosition = Vector3.down;
 
@@ -73,6 +105,8 @@ public class TSBlockController : MonoBehaviour
             return false;
         }
 
+        ColorChange(newBlock);
+
         newTrans = newBlock.transform;
         newTrans.parent = this.transform;
         newTrans.localPosition = prevBlockPosition + Vector3.up;
@@ -88,7 +122,40 @@ public class TSBlockController : MonoBehaviour
 
         isMovingX = !isMovingX;
 
+        GameManager.Instance.TSAddScore();
+
         return true;
+    }
+
+    Color GetRandomColor()
+    {
+        float r = Random.Range(100f, 250f) / 255f
+            , g = Random.Range(100f, 250f) / 255f
+            , b = Random.Range(100f, 250f) / 255f;
+
+        return new Color(r, g, b);
+    }
+
+    void ColorChange(GameObject go)
+    {
+        Color applyColor = Color.Lerp(prevColor, nextColor, (stackCount % 11) / 10f);
+
+        Renderer rn = go.GetComponent<Renderer>();
+
+        if (rn == null)
+        {
+            Debug.LogError("Renderer is null");
+            return;
+        }
+
+        rn.material.color = applyColor;
+        Camera.main.backgroundColor = applyColor - new Color(0.1f, 0.1f, 0.1f);
+
+        if (applyColor.Equals(nextColor))
+        {
+            prevColor = nextColor;
+            nextColor = GetRandomColor();
+        }
     }
 
     void MoveBlaock()
@@ -203,6 +270,7 @@ public class TSBlockController : MonoBehaviour
         go.AddComponent<Rigidbody>();
         go.name = "Rubble";
     }
+
     void GameOverEffect()
     {
         int childCount = this.transform.childCount;
@@ -250,6 +318,9 @@ public class TSBlockController : MonoBehaviour
 
         prevBlockPosition = Vector3.down;
 
+        prevColor = GetRandomColor();
+        nextColor = GetRandomColor();
+
         Spawn_Block();
         Spawn_Block();
     }
@@ -267,6 +338,7 @@ public class TSBlockController : MonoBehaviour
                 Debug.Log("Game Over");
                 isGameOver = true;
                 GameOverEffect();
+                GameManager.Instance.TSGameOver();
             }
         }
     }

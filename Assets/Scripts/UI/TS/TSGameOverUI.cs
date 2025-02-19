@@ -1,18 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class TSGameOverUI : MonoBehaviour
+public class TSGameOverUI : BaseUI
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button exitButton;
+
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI bestScoreText;
+
+    public override void Init(BaseUIManager uiManager)
     {
-        
+        base.Init(uiManager);
+        startButton.onClick.AddListener(OnClickStartButton);
+        exitButton.onClick.AddListener(OnClickExitButton);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickStartButton()
     {
-        
+        GameManager.Instance.TSStartGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OnClickExitButton()
+    {
+        GameManager.isTSFirstStart = true;
+        GameManager.Instance.ExitMiniGame();
+    }
+
+    public void TSTextBestScore(int bestScore)
+    {
+        bestScoreText.text = bestScore.ToString();
+    }
+
+    public void TSTextScore(int score)
+    {
+        scoreText.text = score.ToString();
+    }
+
+    protected override UIState GetUIState()
+    {
+        return UIState.GameOver;
     }
 }
