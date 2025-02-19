@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
 
     //FPFPFPFPFPFPFPFPFP
     private int fpScore = 0;
+    private int fpBestScore = 0;
+    private const string FPBESTSCOREKEY = "FPBestScore";
     private bool isFPGameStart = false;
-    public bool isFPFirstStart = true;
+    public static bool isFPFirstStart = true;
+    [SerializeField] private FPUIManager fpUIManager;
     //FPFPFPFPFPFPFPFPFP
 
     [SerializeField]private BaseUIManager uiManager;
@@ -20,6 +23,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         gameManager = this;
+    }
+
+    private void Start()
+    {
+        fpBestScore = PlayerPrefs.GetInt(FPBESTSCOREKEY, 0);
+        if(fpUIManager != null)
+        {
+            fpUIManager.TextBestScore(fpBestScore);
+        }
     }
 
     public void GameOver()
@@ -36,19 +48,20 @@ public class GameManager : MonoBehaviour
     //FPFPFPFPFPFPFPFPFP
     public void FPUISet()
     {
-        uiManager = FindObjectOfType<FPUIManager>();
+        fpUIManager = FindObjectOfType<FPUIManager>();
     }
 
     public void FPStartGame()
     {
         fpScore = 0;
-        uiManager.SetPlayGame();
+        fpUIManager.SetPlayGame();
         Time.timeScale = 1;
     }
 
     public void FPAddScore()
     {
         fpScore++;
+        fpUIManager.UpdateScore(fpScore);
     }
 
     public int GetFPScore()
@@ -58,7 +71,25 @@ public class GameManager : MonoBehaviour
 
     public void FPGameOver()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FPUpdateBestScore();
+        fpUIManager.SetGameOver();
+    }
+
+    void FPUpdateBestScore()
+    {
+        if (fpBestScore < fpScore)
+        {
+            Debug.Log("최고 점수 갱신");
+            fpBestScore = fpScore;
+
+            PlayerPrefs.SetInt(FPBESTSCOREKEY, fpBestScore);
+        }
+
+        if (fpUIManager != null)
+        {
+            fpUIManager.TextBestScore(fpBestScore);
+            fpUIManager.TextScore(fpScore);
+        }
     }
     //FPFPFPFPFPFPFPFPFPFPFPFP
 }

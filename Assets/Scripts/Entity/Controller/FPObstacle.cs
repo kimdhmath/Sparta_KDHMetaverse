@@ -15,6 +15,13 @@ public class FPObstacle : MonoBehaviour
 
     [SerializeField]private float widthPadding = 4f;
 
+    GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
+
     public Vector3 SetRandomPlace(Vector3 lastPosition, int obstacleCount)
     {
         float holeSize = Random.Range(HOLESIZEMIN, HOLESIZEMAX);
@@ -28,5 +35,14 @@ public class FPObstacle : MonoBehaviour
         transform.position = placePosition;
 
         return placePosition;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        FPPlaneController player = other.GetComponent<FPPlaneController>();
+        if (player != null)
+        {
+            gameManager.FPAddScore();
+        }
     }
 }

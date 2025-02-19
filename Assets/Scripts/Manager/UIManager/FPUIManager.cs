@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class FPUIManager : BaseUIManager
 {
-    FPMenuUI fpMenuUI;
+    FPHomeUI fPHomeUI;
     FPGameUI fpGameUI;
     FPGameOverUI fpGameOverUI;
 
     protected override void Awake()
     {
-        fpMenuUI = GetComponentInChildren<FPMenuUI>(true);
-        fpMenuUI.Init(this);
+        fPHomeUI = GetComponentInChildren<FPHomeUI>(true);
+        fPHomeUI.Init(this);
         fpGameUI = GetComponentInChildren<FPGameUI>(true);
         fpGameUI.Init(this);
+        fpGameOverUI = GetComponentInChildren<FPGameOverUI>(true);
+        fpGameOverUI.Init(this);
 
-        ChangeState(UIState.Home);
+        if (GameManager.isFPFirstStart)
+        {
+            ChangeState(UIState.Home);
+            GameManager.isFPFirstStart = false;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            ChangeState(UIState.Game);
+        }
     }
 
     public override void SetPlayGame()
@@ -28,10 +39,27 @@ public class FPUIManager : BaseUIManager
         ChangeState(UIState.GameOver);
     }
 
+    public void UpdateScore(int score)
+    {
+        fpGameUI.FPUpdateScore(score);
+    }
+
+    public void TextBestScore(int bestScore)
+    {
+        fPHomeUI.FPTextBestScore(bestScore);
+        fpGameOverUI.FPTextBestScore(bestScore);
+    }
+
+    public void TextScore(int score)
+    {
+        fpGameOverUI.FPTextScore(score);
+    }
+
     public override void ChangeState(UIState state)
     {
         currentState = state;
-        fpMenuUI.SetActive(currentState);
+        fPHomeUI.SetActive(currentState);
         fpGameUI.SetActive(currentState);
+        fpGameOverUI.SetActive(currentState);
     }
 }
