@@ -1,0 +1,45 @@
+{
+    "name": "TSPlayerInputControls",
+    "maps": [
+        {
+            "name": "TSBlock",
+            "id": "74ca4910-9f9a-49be-b3b4-97b87d8fa664",
+            "actions": [
+                {
+                    "name": "Stack",
+                    "type": "Button",
+                    "id": "7fa544ea-015b-40e4-bfcb-145d72bd7f38",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "24e701d6-d107-435c-b5e9-407d2d10f92b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0763ff4e-5747-4e56-93e2-8274d6b174a7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
