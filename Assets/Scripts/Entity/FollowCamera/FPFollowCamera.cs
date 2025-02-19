@@ -5,8 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class FPFollowCamera : BaseFollowCamera
 {
-    protected float offsetX;
-    protected float offsetY;
+    private float offsetX;
 
     protected virtual void Start()
     {
@@ -14,7 +13,6 @@ public class FPFollowCamera : BaseFollowCamera
             return;
 
         offsetX = transform.position.x - target.position.x;
-        offsetY = transform.position.y - target.position.y;
     }
 
     protected void LateUpdate()
@@ -23,7 +21,6 @@ public class FPFollowCamera : BaseFollowCamera
             return;
         Vector3 pos = transform.position;
         pos.x = target.position.x + offsetX;
-        pos.y = target.position.y + offsetY;
         transform.position = pos;
     }
 }

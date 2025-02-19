@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FPObstacleConroller : MonoBehaviour
+public class FPObstacle : MonoBehaviour
 {
     private readonly float HIGHPOSY = 0.95f;
     private readonly float LOWPOSY = -0.95f;
