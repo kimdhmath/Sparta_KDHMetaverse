@@ -29,7 +29,7 @@ public class FPGameOverUI : BaseUI
     public void OnClickExitButton()
     {
         GameManager.isFPFirstStart = true;
-        GameManager.Instance.ExitMiniGame();
+        GameManager.Instance.SceneLoad(SceneState.Meta);
     }
 
 

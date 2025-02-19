@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+public enum SceneState
+{
+    Meta,
+    FP,
+    TS
+}
+
 
 public class GameManager : MonoBehaviour
 {
@@ -54,9 +61,20 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
     }
 
-    public void ExitMiniGame()
+    public void SceneLoad(SceneState sceneState)
     {
-        SceneManager.LoadScene("MetarverseScene");
+        switch(sceneState)
+        {
+            case SceneState.Meta:
+                SceneManager.LoadScene("MetarverseScene");
+                break;
+            case SceneState.FP:
+                SceneManager.LoadScene("FlappyPlaneScene");
+                break;
+            case SceneState.TS:
+                SceneManager.LoadScene("TheStackScene");
+                break;
+        }
     }
 
 

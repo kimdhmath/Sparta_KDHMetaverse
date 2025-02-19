@@ -25,7 +25,7 @@ public class TSHomeUI : BaseUI
     public void OnClickExitButton()
     {
         GameManager.isTSFirstStart = true;
-        GameManager.Instance.ExitMiniGame();
+        GameManager.Instance.SceneLoad(SceneState.Meta);
     }
 
 

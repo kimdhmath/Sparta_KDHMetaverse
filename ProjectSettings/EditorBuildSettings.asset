@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MetarverseScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/TheStackScene.unity
+    guid: 72d01d9f54cd4d148bc208a9d60333ca
+  - enabled: 1
+    path: Assets/Scenes/FlappyPlaneScene.unity
+    guid: f392285fb4db17341b6dfa97a52e7a85
   m_configObjects: {}

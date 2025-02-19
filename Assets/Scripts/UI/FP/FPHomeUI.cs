@@ -27,7 +27,8 @@ public class FPHomeUI : BaseUI
     public void OnClickExitButton()
     {
         GameManager.isFPFirstStart = true;
-        GameManager.Instance.ExitMiniGame();
+        Time.timeScale = 1;
+        GameManager.Instance.SceneLoad(SceneState.Meta);
     }
 
 
