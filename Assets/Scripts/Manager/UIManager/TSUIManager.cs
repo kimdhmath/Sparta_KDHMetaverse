@@ -9,8 +9,6 @@ public class TSUIManager : BaseUIManager
     TSGameUI tsGameUI = null;
     TSGameOverUI tsGameOverUI = null;
 
-    TSBlockController blockController = null;
-
     protected override void Awake()
     {
         tsHomeUI = GetComponentInChildren<TSHomeUI>(true);
