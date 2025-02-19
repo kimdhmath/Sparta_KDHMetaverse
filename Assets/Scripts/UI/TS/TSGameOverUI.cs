@@ -22,7 +22,6 @@ public class TSGameOverUI : BaseUI
 
     public void OnClickStartButton()
     {
-        GameManager.Instance.TSStartGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class TSBlockController : MonoBehaviour
@@ -30,14 +31,10 @@ public class TSBlockController : MonoBehaviour
 
     private bool isGameOver = true;
 
-    /*private void Awake()
-    {
-        GameManager.Instance.TSUISet();
-    }*/
-
-    // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.TSUISet();
+        GameManager.Instance.TSUpdateBestScore();
         if (originBlock == null)
         {
             Debug.LogError("Originblock is null");
@@ -74,7 +71,6 @@ public class TSBlockController : MonoBehaviour
         Spawn_Block();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isGameOver)
@@ -122,7 +118,7 @@ public class TSBlockController : MonoBehaviour
 
         isMovingX = !isMovingX;
 
-        GameManager.Instance.TSAddScore();
+        GameManager.Instance.TSUpadateScore(stackCount);
 
         return true;
     }
@@ -198,7 +194,6 @@ public class TSBlockController : MonoBehaviour
                 tempPosition.x = middle;
                 lastBlock.localPosition = tempPosition = tempPosition;
 
-                //Ό³Έν ΄Ω½Γµθ±β
                 float rubbleHalfScale = deltaX / 2f;
                 CreateRubble(
                     new Vector3(
@@ -273,6 +268,11 @@ public class TSBlockController : MonoBehaviour
 
     void GameOverEffect()
     {
+        if(isGameOver)
+        {
+            return;
+        }
+
         int childCount = this.transform.childCount;
 
         for (int i = 1; i < 20; i++)
@@ -327,6 +327,10 @@ public class TSBlockController : MonoBehaviour
 
     private void OnStack(InputValue inputValue)
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (inputValue.isPressed)
         {
             if (PlaceBlock())
@@ -335,9 +339,9 @@ public class TSBlockController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Game Over");
-                isGameOver = true;
+
                 GameOverEffect();
+                isGameOver = true;
                 GameManager.Instance.TSGameOver();
             }
         }

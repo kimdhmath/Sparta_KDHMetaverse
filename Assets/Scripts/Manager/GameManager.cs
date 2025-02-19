@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     private bool isTSGameStart = false;
     public static bool isTSFirstStart = true;
     [SerializeField] private TSUIManager tsUIManager;
-    private TSBlockController blockController;
     //TSTSTSTSTSTSTSTS
 
     [SerializeField]private BaseUIManager uiManager;
@@ -113,7 +112,6 @@ public class GameManager : MonoBehaviour
     public void TSUISet()
     {
         tsUIManager = FindObjectOfType<TSUIManager>();
-        blockController = FindObjectOfType<TSBlockController>();
     }
 
     public void TSStartGame()
@@ -123,10 +121,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void TSAddScore()
+    public void TSUpadateScore(int score)
     {
-        tsScore++;
-        tsUIManager.UpdateScore(tsScore);
+        tsScore = score;
+        tsUIManager.UpdateScore(score);
     }
 
     public int GetTSScore()
@@ -140,7 +138,7 @@ public class GameManager : MonoBehaviour
         tsUIManager.SetGameOver();
     }
 
-    void TSUpdateBestScore()
+    public void TSUpdateBestScore()
     {
         if (tsBestScore < tsScore)
         {
