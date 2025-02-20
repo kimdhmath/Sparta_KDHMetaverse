@@ -9,7 +9,7 @@ public class TSUIManager : BaseUIManager
     TSGameUI tsGameUI = null;
     TSGameOverUI tsGameOverUI = null;
 
-    protected override void Awake()
+    protected  void Awake()
     {
         tsHomeUI = GetComponentInChildren<TSHomeUI>(true);
         tsHomeUI.Init(this);
@@ -30,12 +30,12 @@ public class TSUIManager : BaseUIManager
         }
     }
 
-    public override void SetPlayGame()
+    public void SetPlayGame()
     {
         ChangeState(UIState.Game);
     }
 
-    public override void SetGameOver()
+    public void SetGameOver()
     {
         ChangeState(UIState.GameOver);
     }

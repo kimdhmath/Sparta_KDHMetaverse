@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     private int fpScore = 0;
     private int fpBestScore = 0;
     private const string FPBESTSCOREKEY = "FPBestScore";
-    private bool isFPGameStart = false;
     public static bool isFPFirstStart = true;
     [SerializeField] private FPUIManager fpUIManager;
     //FPFPFPFPFPFPFPFPFP
@@ -27,7 +26,6 @@ public class GameManager : MonoBehaviour
     private int tsScore = 0;
     private int tsBestScore = 0;
     private const string TSBESTSCOREKEY = "TSBestScore";
-    private bool isTSGameStart = false;
     public static bool isTSFirstStart = true;
     [SerializeField] private TSUIManager tsUIManager;
     //TSTSTSTSTSTSTSTS

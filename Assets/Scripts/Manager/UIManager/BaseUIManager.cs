@@ -5,18 +5,13 @@ public enum UIState
 {
     Home,
     Game,
-    GameOver
+    GameOver,
+    None
 }
 
 public abstract class BaseUIManager : MonoBehaviour
 {
     protected UIState currentState;
-
-    protected abstract void Awake();
-
-    public abstract void SetPlayGame();
-
-    public abstract void SetGameOver();
 
     public abstract void ChangeState(UIState state);
 }

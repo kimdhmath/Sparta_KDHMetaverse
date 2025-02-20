@@ -2,13 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FPUIManager : BaseUIManager
+/*public enum UIState
 {
+    Home,
+    Game,
+    GameOver
+}*/
+
+public class MiniGameUIManager : MonoBehaviour
+{
+    
+    /*protected UIState currentState;
     FPHomeUI fPHomeUI;
     FPGameUI fpGameUI;
     FPGameOverUI fpGameOverUI;
 
-    protected  void Awake()
+    protected void Awake()
     {
         fPHomeUI = GetComponentInChildren<FPHomeUI>(true);
         fPHomeUI.Init(this);
@@ -61,5 +70,5 @@ public class FPUIManager : BaseUIManager
         fPHomeUI.SetActive(currentState);
         fpGameUI.SetActive(currentState);
         fpGameOverUI.SetActive(currentState);
-    }
+    }*/
 }
