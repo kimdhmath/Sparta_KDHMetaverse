@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInputControls",
+    "name": "MetaPlayerInputControls",
     "maps": [
         {
             "name": "Player",
@@ -70,6 +70,34 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "NPC",
+            "id": "74ca6f08-0f3a-495c-9b98-9ac477a7142d",
+            "actions": [
+                {
+                    "name": "NPCTalk",
+                    "type": "Button",
+                    "id": "f6910803-26f6-4bb4-b346-b1cc317eb2f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "40bddef4-dc89-46e4-a4f3-e88e6dfebc1d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NPCTalk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

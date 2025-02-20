@@ -52,21 +52,12 @@ public class MetaPlayerController : MonoBehaviour
         characterRenderer.flipX = isLeft;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Collision Enter");
-        if (collision.gameObject.CompareTag("FP"))
-        {
-            GameManager.Instance.SceneLoad(SceneState.FP);
-        }
-        else if (collision.gameObject.CompareTag("TS"))
-        {
-            GameManager.Instance.SceneLoad(SceneState.TS);
-        }
-    }
-
     void OnMove(InputValue inputValue)
     {
+        if (GameManager.isStop)
+        {
+            return;
+        }
         movementDirection = inputValue.Get<Vector2>();
         movementDirection = movementDirection.normalized;
 

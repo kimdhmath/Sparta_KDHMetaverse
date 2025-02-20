@@ -192,7 +192,7 @@ public class TSBlockController : MonoBehaviour
 
                 Vector3 tempPosition = lastBlock.localPosition;
                 tempPosition.x = middle;
-                lastBlock.localPosition = tempPosition = tempPosition;
+                lastBlock.localPosition = tempPosition;
 
                 float rubbleHalfScale = deltaX / 2f;
                 CreateRubble(
@@ -229,7 +229,7 @@ public class TSBlockController : MonoBehaviour
 
                 Vector3 tempPosition = lastBlock.localPosition;
                 tempPosition.z = middle;
-                lastBlock.localPosition = tempPosition = tempPosition;
+                lastBlock.localPosition = tempPosition;
 
                 float rubbleHalfScale = deltaZ / 2f;
                 CreateRubble(

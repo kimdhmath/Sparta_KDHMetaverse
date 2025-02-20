@@ -8,7 +8,7 @@ public class FPUIManager : BaseUIManager
     FPGameUI fpGameUI;
     FPGameOverUI fpGameOverUI;
 
-    protected override void Awake()
+    protected  void Awake()
     {
         fPHomeUI = GetComponentInChildren<FPHomeUI>(true);
         fPHomeUI.Init(this);
@@ -29,12 +29,12 @@ public class FPUIManager : BaseUIManager
         }
     }
 
-    public override void SetPlayGame()
+    public void SetPlayGame()
     {
         ChangeState(UIState.Game);
     }
 
-    public override void SetGameOver()
+    public void SetGameOver()
     {
         ChangeState(UIState.GameOver);
     }
