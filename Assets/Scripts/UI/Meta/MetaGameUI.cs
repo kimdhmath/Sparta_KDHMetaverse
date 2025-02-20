@@ -18,7 +18,12 @@ public class MetaGameUI : BaseUI
 
     public void OnClickeMenuButton()
     {
+        metaUIManager.SetMenuActive();
+        GameManager.isStop = true;
+        Time.timeScale = 0;
     }
+
+
 
     protected override UIState GetUIState()
     {

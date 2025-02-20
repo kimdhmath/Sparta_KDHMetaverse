@@ -32,7 +32,7 @@ public class MetaNPCController : MonoBehaviour
     void OnNPCTalk(InputValue inputValue)
     {
 
-        if (!playerIsCloser)
+        if (!playerIsCloser || GameManager.isStop)
         {
             return;
         }

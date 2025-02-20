@@ -13,6 +13,7 @@ public enum SceneState
 public class GameManager : MonoBehaviour
 {
     static GameManager gameManager;
+    public static bool isStop = false;
 
     //FPFPFPFPFPFPFPFPFP
     private int fpScore = 0;

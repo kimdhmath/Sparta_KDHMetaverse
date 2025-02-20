@@ -54,6 +54,10 @@ public class MetaPlayerController : MonoBehaviour
 
     void OnMove(InputValue inputValue)
     {
+        if (GameManager.isStop)
+        {
+            return;
+        }
         movementDirection = inputValue.Get<Vector2>();
         movementDirection = movementDirection.normalized;
 
