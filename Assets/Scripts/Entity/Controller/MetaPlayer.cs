@@ -24,7 +24,6 @@ public class MetaPlayer : MonoBehaviour
     {
         if (index >= 0 && index < animControllers.Length)
         {
-            Debug.Log(index);
             playerAnimator.runtimeAnimatorController = animControllers[index];
         }
     }

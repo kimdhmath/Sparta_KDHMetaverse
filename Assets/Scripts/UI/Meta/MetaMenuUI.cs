@@ -20,7 +20,6 @@ public class MetaMenuUI : BaseUI
         changeApperanceButton.onClick.AddListener(OnClickChangeApperanceButton);
         menuExitButton.onClick.AddListener(OnClickMenuExitButton);
         metaAnimationHandler = FindAnyObjectByType<MetaAnimationHandler>();
-        index = metaAnimationHandler.GetAppearanceIndex();
 
     }
 

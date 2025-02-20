@@ -52,5 +52,7 @@ public class MetaUIManager : BaseUIManager
     {
         currentState = state;
         metaGameUI.SetActive(currentState);
+        metaNPCTalkUI.SetActive(currentState);
+        metaMenuUI.SetActive(currentState);
     }
 }

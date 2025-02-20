@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public enum SceneState
@@ -16,42 +17,36 @@ public class GameManager : MonoBehaviour
     public static bool isStop = false;
 
     //FPFPFPFPFPFPFPFPFP
-    private int fpScore = 0;
-    private int fpBestScore = 0;
-    private const string FPBESTSCOREKEY = "FPBestScore";
     public static bool isFPFirstStart = true;
     [SerializeField] private FPUIManager fpUIManager;
     //FPFPFPFPFPFPFPFPFP
 
     //TSTSTSTSTSTSTSTS
-    private int tsScore = 0;
-    private int tsBestScore = 0;
-    private const string TSBESTSCOREKEY = "TSBestScore";
     public static bool isTSFirstStart = true;
     [SerializeField] private TSUIManager tsUIManager;
     //TSTSTSTSTSTSTSTS
-
-    [SerializeField]private BaseUIManager uiManager;
 
     public static GameManager Instance { get { return gameManager; } }
 
     private void Awake()
     {
-        gameManager = this;
+        if(gameManager == null)
+        {
+            gameManager = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private void Start()
     {
-        fpBestScore = PlayerPrefs.GetInt(FPBESTSCOREKEY, 0);
-        if(fpUIManager != null)
+        if (fpUIManager != null)
         {
-            fpUIManager.TextBestScore(fpBestScore);
+            fpUIManager.TextBestScore(DataManager.Instance.FPBestScore);
         }
 
-        tsBestScore = PlayerPrefs.GetInt(TSBESTSCOREKEY, 0);
         if (tsUIManager != null)
         {
-            tsUIManager.TextBestScore(tsBestScore);
+            tsUIManager.TextBestScore(DataManager.Instance.TSBestScore);
         }
     }
 
@@ -85,20 +80,14 @@ public class GameManager : MonoBehaviour
 
     public void FPStartGame()
     {
-        fpScore = 0;
+        DataManager.Instance.FPScore = 0;
         fpUIManager.SetPlayGame();
         Time.timeScale = 1;
     }
 
     public void FPAddScore()
     {
-        fpScore++;
-        fpUIManager.UpdateScore(fpScore);
-    }
-
-    public int GetFPScore()
-    {
-        return fpScore;
+        fpUIManager.UpdateScore(++DataManager.Instance.FPScore);
     }
 
     public void FPGameOver()
@@ -107,20 +96,12 @@ public class GameManager : MonoBehaviour
         fpUIManager.SetGameOver();
     }
 
-    void FPUpdateBestScore()
+    public void FPUpdateBestScore()
     {
-        if (fpBestScore < fpScore)
-        {
-            Debug.Log("최고 점수 갱신");
-            fpBestScore = fpScore;
-
-            PlayerPrefs.SetInt(FPBESTSCOREKEY, fpBestScore);
-        }
-
         if (fpUIManager != null)
         {
-            fpUIManager.TextBestScore(fpBestScore);
-            fpUIManager.TextScore(fpScore);
+            fpUIManager.TextBestScore(DataManager.Instance.FPBestScore);
+            fpUIManager.TextScore(DataManager.Instance.FPScore);
         }
     }
     //FPFPFPFPFPFPFPFPFPFPFPFP
@@ -133,20 +114,15 @@ public class GameManager : MonoBehaviour
 
     public void TSStartGame()
     {
-        tsScore = 0;
+        DataManager.Instance.TSScore = 0;
         tsUIManager.SetPlayGame();
         Time.timeScale = 1;
     }
 
     public void TSUpadateScore(int score)
     {
-        tsScore = score;
+        DataManager.Instance.TSScore = score;
         tsUIManager.UpdateScore(score);
-    }
-
-    public int GetTSScore()
-    {
-        return tsScore;
     }
 
     public void TSGameOver()
@@ -157,18 +133,10 @@ public class GameManager : MonoBehaviour
 
     public void TSUpdateBestScore()
     {
-        if (tsBestScore < tsScore)
-        {
-            Debug.Log("최고 점수 갱신");
-            tsBestScore = tsScore;
-
-            PlayerPrefs.SetInt(TSBESTSCOREKEY, tsBestScore);
-        }
-
         if (tsUIManager != null)
         {
-            tsUIManager.TextBestScore(tsBestScore);
-            tsUIManager.TextScore(tsScore);
+            tsUIManager.TextBestScore(DataManager.Instance.TSBestScore);
+            tsUIManager.TextScore(DataManager.Instance.TSScore);
         }
     }
     //TSTSTSTSTSTSTSTS

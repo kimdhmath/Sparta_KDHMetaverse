@@ -22,7 +22,12 @@ public class FPPlaneController : MonoBehaviour
     {
         _rigidbody = transform.GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<FPAnimationHandler>();
+    }
+
+    private void Start()
+    {
         GameManager.Instance.FPUISet();
+        GameManager.Instance.FPUpdateBestScore();
 
         Time.timeScale = 0;
     }

@@ -21,9 +21,4 @@ public class MetaAnimationHandler : BaseAnimationHandler
     {
         _animator.SetInteger(Appearance, index);
     }
-
-    public int GetAppearanceIndex()
-    {
-        return _animator.GetInteger(Appearance);
-    }
 }
