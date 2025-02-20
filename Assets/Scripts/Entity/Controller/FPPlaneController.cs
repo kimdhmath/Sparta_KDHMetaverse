@@ -38,10 +38,6 @@ public class FPPlaneController : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-    }
-
     private void FixedUpdate()//물리연산을 처리하는 함수
     {
         //FPPlane이 죽었을때 죽음 쿨타임을 줄이고 죽음 쿨타임이 0이 되면 게임오버
